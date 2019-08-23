@@ -107,7 +107,6 @@ export function nativeCrash(): void {
 
 function isPublishedExpoUrl(url) {
     // return url.includes('https://d1wp6m56sqw74a.cloudfront.net');
-    console.log({ url })
     return url.includes('the-yes')
 }
 
