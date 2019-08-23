@@ -51,8 +51,9 @@ export function init(
               .replace(/^file\:\/\//, "")
               .replace(/^address at /, "")
               .replace(/^.*\/[^\.]+(\.app|CodePush|.*(?=\/))/, "");
-            
+
             frame.filename = normalizeUrl(frame.filename);
+
             const appPrefix = "app://";
             // We always want to have a tripple slash
             frame.filename =
@@ -104,16 +105,15 @@ export function nativeCrash(): void {
   }
 }
 
-
-function isPublishedExpoUrl(url) {
-    // return url.includes('https://d1wp6m56sqw74a.cloudfront.net');
-    return url.includes('the-yes')
+function isPublishedExpoUrl(url: string): boolean {
+  // return url.includes('https://d1wp6m56sqw74a.cloudfront.net');
+  return url.includes('the-yes')
 }
 
-function normalizeUrl(url) {
-    if (isPublishedExpoUrl(url)) {
-        return `main.ios.bundle`;
-    } else {
-        return url;
-    }
+function normalizeUrl(url: string): string {
+  if (isPublishedExpoUrl(url)) {
+    return `main.ios.bundle`;
+  } else {
+    return url;
+  }
 }
