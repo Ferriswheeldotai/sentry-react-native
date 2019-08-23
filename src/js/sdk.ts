@@ -51,7 +51,8 @@ export function init(
               .replace(/^file\:\/\//, "")
               .replace(/^address at /, "")
               .replace(/^.*\/[^\.]+(\.app|CodePush|.*(?=\/))/, "");
-
+            
+            frame.filename = normalizeUrl(frame.filename);
             const appPrefix = "app://";
             // We always want to have a tripple slash
             frame.filename =
@@ -101,4 +102,19 @@ export function nativeCrash(): void {
   if (client) {
     client.nativeCrash();
   }
+}
+
+
+function isPublishedExpoUrl(url) {
+    // return url.includes('https://d1wp6m56sqw74a.cloudfront.net');
+    console.log({ url })
+    return url.includes('the-yes')
+}
+
+function normalizeUrl(url) {
+    if (isPublishedExpoUrl(url)) {
+        return `main.${Platform.OS}.bundle`;
+    } else {
+        return url;
+    }
 }
