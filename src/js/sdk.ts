@@ -112,7 +112,7 @@ function isPublishedExpoUrl(url) {
 
 function normalizeUrl(url) {
     if (isPublishedExpoUrl(url)) {
-        return `main.${Platform.OS}.bundle`;
+        return `main.ios.bundle`;
     } else {
         return url;
     }
